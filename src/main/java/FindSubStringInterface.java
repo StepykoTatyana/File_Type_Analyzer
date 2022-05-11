@@ -1,5 +1,7 @@
+import java.io.File;
+
 public interface FindSubStringInterface {
-    void algorithm(byte[] allBytes, String arg1, String arg2);
+    void algorithm(byte[] allBytes, String arg1, String arg2, File file);
 
     default int[] prefixFunctionForByte(byte[] s) {
         int[] p = new int[s.length];
