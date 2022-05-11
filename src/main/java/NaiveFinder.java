@@ -1,8 +1,9 @@
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 public class NaiveFinder implements FindSubStringInterface{
     @Override
-    public void algorithm(byte[] allBytes, String patternFromArgs, String typeFile) {
+    public void algorithm(byte[] allBytes, String patternFromArgs, String typeFile, File file) {
         byte[] pattern = patternFromArgs.getBytes(StandardCharsets.UTF_8);
         int k = 0;
         long startTime = System.nanoTime();

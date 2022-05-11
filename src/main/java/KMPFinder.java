@@ -1,8 +1,9 @@
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 public class KMPFinder implements FindSubStringInterface {
     @Override
-    public void algorithm(byte[] allBytes, String patternFromArgs, String typeFile) {
+    public void algorithm(byte[] allBytes, String patternFromArgs, String typeFile, File file) {
         byte[] pattern = patternFromArgs.getBytes(StandardCharsets.UTF_8);
         int[] p = prefixFunctionForByte(pattern);
         int k = 0;
@@ -14,10 +15,15 @@ public class KMPFinder implements FindSubStringInterface {
                 if (allBytes[i] == pattern[k]) {
                     k++;
                     if (k == pattern.length) {
-                        System.out.println(typeFile);
+                        if (file != null) {
+                            System.out.println(file.getName() + ": " + typeFile);
+                        } else {
+                            System.out.println(typeFile);
+                        }
+
                         long elapsedNanos = System.nanoTime() - startTime;
-                        System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
-                        System.out.println();
+//                        System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
+//                        System.out.println();
                         break;
                     }
                 } else {
@@ -32,10 +38,14 @@ public class KMPFinder implements FindSubStringInterface {
             }
             m++;
             if (m > allBytes.length) {
-                System.out.println("Unknown file type");
+                if (file != null) {
+                    System.out.println(file.getName() + ": Unknown file type");
+                } else {
+                    System.out.println("Unknown file type");
+                }
                 long elapsedNanos = System.nanoTime() - startTime;
-                System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
-                System.out.println();
+//                System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
+//                System.out.println();
                 break;
             }
         }

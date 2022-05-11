@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
@@ -5,11 +6,12 @@ import java.util.Objects;
 public class FindSubStringClass {
     static private String typeAlgorithm;
     static String path;
+    static File file;
     static String pattern;
     static String typeFile;
 
 
-    public  FindSubStringClass(String typeAlgorithm, String path, String pattern, String typeFile){
+    public FindSubStringClass(String typeAlgorithm, String path, String pattern, String typeFile) {
         FindSubStringClass.typeAlgorithm = typeAlgorithm;
         FindSubStringClass.path = path;
         FindSubStringClass.pattern = pattern;
@@ -22,23 +24,44 @@ public class FindSubStringClass {
 //        System.out.println(pattern);
 
         try (
-                FileInputStream inputStream = new FileInputStream("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\"+ path);
+
+                FileInputStream inputStream = new FileInputStream(path);
         ) {
             byte[] allBytes = inputStream.readAllBytes();
             if (Objects.equals(typeAlgorithm, "--naive")) {
                 FindSubStringInterface naiveFinder = new NaiveFinder();
-                naiveFinder.algorithm(allBytes, pattern, typeFile);
+                naiveFinder.algorithm(allBytes, pattern, typeFile, null);
             } else {
-                File_Type_Analyzer.KMPFinder kmpFinder = new File_Type_Analyzer.KMPFinder();
-                kmpFinder.algorithm(allBytes,pattern, typeFile);
+                KMPFinder kmpFinder = new KMPFinder();
+                if (file != null) {
+                    kmpFinder.algorithm(allBytes, pattern, typeFile, file);
+                } else {
+                    kmpFinder.algorithm(allBytes, pattern, typeFile, null);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-//
-//    @Override
-//    public void run() {
-//        findSubString();
-//    }
+
+    public static void findSubStringNew(File file, String pattern, String typeFile) {
+        try (
+
+                FileInputStream inputStream = new FileInputStream(file.getPath());
+        ) {
+            byte[] allBytes = inputStream.readAllBytes();
+            if (Objects.equals(typeAlgorithm, "--naive")) {
+                FindSubStringInterface naiveFinder = new NaiveFinder();
+                naiveFinder.algorithm(allBytes, pattern, typeFile, null);
+            } else {
+                KMPFinder kmpFinder = new KMPFinder();
+                kmpFinder.algorithm(allBytes, pattern, typeFile, file);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
