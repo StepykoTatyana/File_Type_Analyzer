@@ -9,7 +9,7 @@ public class Part_1 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        // File path = new File("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc.pdf");
+        // File path = new File("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc44.pdf");
 //        System.out.println(path);
 //        System.out.println(args[1]);
 //        System.out.println(Arrays.toString(args[1].getBytes(StandardCharsets.UTF_8)));
@@ -22,8 +22,8 @@ public class Part_1 {
 
 //            System.out.printf("File size: %d bytes \n", inputStream.available());
             byte[] allBytes = inputStream.readAllBytes();
-            // byte[] allBytes = Files.readAllBytes(Path.of("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc.pdf"));
-            //Files.readAllBytes(Path.of("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc.pdf"));
+            // byte[] allBytes = Files.readAllBytes(Path.of("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc44.pdf"));
+            //Files.readAllBytes(Path.of("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc44.pdf"));
 //            System.out.println("@@@@@@@@@@@@@@@");
 //            System.out.println(args[1]);
 //            byte[] k = args[1].getBytes(StandardCharsets.UTF_8);

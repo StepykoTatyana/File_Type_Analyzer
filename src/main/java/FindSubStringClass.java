@@ -79,18 +79,16 @@ public class FindSubStringClass {
         } catch (FileNotFoundException e) {
             System.out.println("No file found: " + "src/FilesDict/file4.txt");
         }
-
-
         try (
-
                 FileInputStream inputStream = new FileInputStream(file.getPath())
         ) {
             byte[] allBytes = inputStream.readAllBytes();
             for (List<String> patternList : ratesMap.values()) {
                 for (String pattern1 : patternList) {
+                    RabinKarpFinder rabinKarpFinder = new RabinKarpFinder();
                     KMPFinder kmpFinder = new KMPFinder();
-                    kmpFinder.algorithm(allBytes, pattern1, mapNamesPatterns.get(pattern1), file);
-                    flag = kmpFinder.flagExist;
+                    rabinKarpFinder.algorithm(allBytes, pattern1, mapNamesPatterns.get(pattern1), file);
+                    flag = rabinKarpFinder.flagExist;
                     if (flag) {
                         System.out.println(file.getName() + ": " + mapNamesPatterns.get(pattern1));
                         break;
@@ -108,5 +106,6 @@ public class FindSubStringClass {
             e.printStackTrace();
         }
     }
+
 
 }
