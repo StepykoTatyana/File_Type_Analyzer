@@ -10,7 +10,7 @@ public class Part_2 {
     public static void main(String[] args) {
 
         try (
-                FileInputStream inputStream = new FileInputStream("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc.pdf");
+                FileInputStream inputStream = new FileInputStream("C:\\Users\\Tanya\\Desktop\\untitled\\Hello\\src\\File_Type_Analyzer\\doc44.pdf");
         ) {
             byte[] allBytes = inputStream.readAllBytes();
             if (Objects.equals(args[0], "--naive")) {
