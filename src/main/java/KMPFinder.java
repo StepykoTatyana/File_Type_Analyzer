@@ -2,8 +2,12 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 public class KMPFinder implements FindSubStringInterface {
+    public Boolean flagExist;
+
+
     @Override
     public void algorithm(byte[] allBytes, String patternFromArgs, String typeFile, File file) {
+        flagExist = false;
         byte[] pattern = patternFromArgs.getBytes(StandardCharsets.UTF_8);
         int[] p = prefixFunctionForByte(pattern);
         int k = 0;
@@ -16,10 +20,11 @@ public class KMPFinder implements FindSubStringInterface {
                     k++;
                     if (k == pattern.length) {
                         if (file != null) {
-                            System.out.println(file.getName() + ": " + typeFile);
+                            //System.out.println(file.getName() + ": " + typeFile);
                         } else {
-                            System.out.println(typeFile);
+                            //System.out.println(typeFile);
                         }
+                        flagExist = true;
 
                         long elapsedNanos = System.nanoTime() - startTime;
 //                        System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
@@ -39,15 +44,17 @@ public class KMPFinder implements FindSubStringInterface {
             m++;
             if (m > allBytes.length) {
                 if (file != null) {
-                    System.out.println(file.getName() + ": Unknown file type");
+                    //System.out.println("!" + file.getName() + ": Unknown file type");
                 } else {
-                    System.out.println("Unknown file type");
+                    //System.out.println("Unknown file type");
                 }
                 long elapsedNanos = System.nanoTime() - startTime;
 //                System.out.printf("It took %.3f seconds", (float) elapsedNanos / 1_000_000_000);
 //                System.out.println();
+                flagExist = false;
                 break;
             }
         }
+
     }
 }
